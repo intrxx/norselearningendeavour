@@ -36,6 +36,11 @@ main :: proc() {
     palindrome_input := "oko"
     fmt.println("\nWe're checking for palindrome:\n", palindrome_input, palindrome_check(palindrome_input))
 
+    bubble_sort_input := [14]int{5, 62, 1, 33, 12, 1, 23, 3, 4, 2131, 322, 2, 3, 5} 
+    fmt.println("\nWe're bubble sorting:\n", bubble_sort_input)
+    bubble_sort(bubble_sort_input[:])
+    fmt.printf(" Sorted: %d\n", bubble_sort_input)
+
     fmt.println("\n");
 }
 
@@ -136,4 +141,21 @@ palindrome_check :: proc(input: string) -> bool {
         }
     }
     return true
+}
+
+bubble_sort :: proc(input: []int) {
+    size := len(input)
+    for i := 0; i < size; i += 1 {
+        swapped := false
+        for j := 1; j < size - i; j += 1 {
+           if input[j] < input[j - 1] {
+                input[j - 1], input[j] = input[j], input[j - 1]
+                swapped = true
+           }
+        }
+
+        if !swapped {
+            break
+        }
+    }
 }
