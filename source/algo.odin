@@ -33,6 +33,9 @@ main :: proc() {
     digit_sum_input := 123456789
     fmt.println("\nWe're summing digits in:\n", digit_sum_input, sum_of_digits(digit_sum_input))
 
+    palindrome_input := "oko"
+    fmt.println("\nWe're checking for palindrome:\n", palindrome_input, palindrome_check(palindrome_input))
+
     fmt.println("\n");
 }
 
@@ -119,4 +122,18 @@ sum_of_digits :: proc(input: int) -> int {
         number /= 10
     }
     return sum
+}
+
+palindrome_check :: proc(input: string) -> bool {
+    input_len := len(input)
+    for character, index in input {
+        if u8(character) != input[input_len - 1 - index] {
+            return false
+        }
+
+        if index > input_len / 2 {
+            break
+        }
+    }
+    return true
 }
