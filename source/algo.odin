@@ -36,10 +36,16 @@ main :: proc() {
     palindrome_input := "oko"
     fmt.println("\nWe're checking for palindrome:\n", palindrome_input, palindrome_check(palindrome_input))
 
-    bubble_sort_input := [14]int{5, 62, 1, 33, 12, 1, 23, 3, 4, 2131, 322, 2, 3, 5} 
-    fmt.println("\nWe're bubble sorting:\n", bubble_sort_input)
-    bubble_sort(bubble_sort_input[:])
-    fmt.printf(" Sorted: %d\n", bubble_sort_input)
+    array_to_sort := [14]int{5, 62, 1, 33, 12, 1, 23, 3, 4, 2131, 322, 2, 3, 5} 
+    sort_input := array_to_sort
+    fmt.println("\nWe're bubble sorting:\n", sort_input)
+    bubble_sort(sort_input[:])
+    fmt.printf(" Sorted: %d\n", sort_input)
+
+    sort_input = array_to_sort
+    fmt.println("\nWe're insertion sorting:\n", sort_input)
+    insertion_sort(sort_input[:])
+    fmt.printf(" Sorted: %d\n", sort_input)
 
     fmt.println("\n");
 }
@@ -157,5 +163,17 @@ bubble_sort :: proc(input: []int) {
         if !swapped {
             break
         }
+    }
+}
+
+insertion_sort :: proc(input: []int) {
+    for i := 1; i < len(input); i += 1 {
+        current_elem := input[i]
+        j := i - 1
+        for j >= 0 && input[j] > current_elem {
+           input[j + 1] = input[j]
+           j -= 1
+        }
+        input[j + 1] = current_elem
     }
 }
