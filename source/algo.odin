@@ -27,8 +27,11 @@ main :: proc() {
     count_string := "hello"
     fmt.println("\nWe're counting runes in a string:\n", count_string, count_characters(count_string))
 
-    input := 15
-    fmt.println("\nWe're doing fizzbuzz:\n", input, fizz_buzz(input))
+    fizz_buzz_input := 15
+    fmt.println("\nWe're doing fizzbuzz:\n", fizz_buzz_input, fizz_buzz(fizz_buzz_input))
+
+    digit_sum_input := 123456789
+    fmt.println("\nWe're summing digits in:\n", digit_sum_input, sum_of_digits(digit_sum_input))
 
     fmt.println("\n");
 }
@@ -106,4 +109,14 @@ fizz_buzz :: proc(input: int) -> []string {
         }
     }
     return returnArray
+}
+
+sum_of_digits :: proc(input: int) -> int {
+    sum: int
+    number := input
+    for number != 0 {
+        sum += number % 10
+        number /= 10
+    }
+    return sum
 }
