@@ -1,6 +1,7 @@
 package main
 
 import "core:strconv"
+import "core:strings"
 import "core:fmt"
 
 main :: proc() {
@@ -47,8 +48,16 @@ main :: proc() {
     insertion_sort(sort_input[:])
     fmt.printf(" Sorted: %d\n", sort_input)
 
+    overload_int_a, overload_int_b, overload_float_a, overload_float_b, overload_string_a, overload_string_b := 6, 9, f32(2.22), f32(3.22), "foo", "bar"
+    fmt.println("\nWe're overloading functions! (sort of):")
+    fmt.println("Add: ", overload_int_a, overload_int_b, add(overload_int_a, overload_int_b))
+    fmt.println("Add: ", overload_float_a, overload_float_b, add(overload_float_a, overload_float_b))
+    fmt.println("Add: ", overload_string_a, overload_string_b, add(overload_string_a, overload_string_b))
+
     fmt.println("\n");
 }
+
+// -----------------------------------------------------------
 
 multiply :: proc(first: int, second: int) -> int {
     return first * second;
@@ -57,6 +66,8 @@ multiply :: proc(first: int, second: int) -> int {
 divide :: proc(first: int, second: int) -> int {
     return first / second;
 }
+
+// -----------------------------------------------------------
 
 array_sum :: proc(array: []int) -> int {
     sum: int
@@ -75,6 +86,8 @@ array_max :: proc(array: []int) -> int {
     }
     return new_max;
 }
+
+// -----------------------------------------------------------
 
 array_reverse :: proc(array: []int){
     for i := 0; i < len(array) / 2; i += 1 {
@@ -97,6 +110,8 @@ array_reverse_alt :: proc(array: []int){
     }
 }
 
+// -----------------------------------------------------------
+
 count_characters :: proc(some_string: string) -> map[rune]int {
     return_count: map[rune]int
     for character in some_string {
@@ -104,6 +119,8 @@ count_characters :: proc(some_string: string) -> map[rune]int {
     }
     return return_count
 }
+
+// -----------------------------------------------------------
 
 fizz_buzz :: proc(input: int) -> []string {
     returnArray := make([]string, input)
@@ -125,6 +142,8 @@ fizz_buzz :: proc(input: int) -> []string {
     return returnArray
 }
 
+// -----------------------------------------------------------
+
 sum_of_digits :: proc(input: int) -> int {
     sum: int
     number := input
@@ -134,6 +153,8 @@ sum_of_digits :: proc(input: int) -> int {
     }
     return sum
 }
+
+// -----------------------------------------------------------
 
 palindrome_check :: proc(input: string) -> bool {
     input_len := len(input)
@@ -148,6 +169,8 @@ palindrome_check :: proc(input: string) -> bool {
     }
     return true
 }
+
+// -----------------------------------------------------------
 
 bubble_sort :: proc(input: []int) {
     size := len(input)
@@ -166,6 +189,8 @@ bubble_sort :: proc(input: []int) {
     }
 }
 
+// -----------------------------------------------------------
+
 insertion_sort :: proc(input: []int) {
     for i := 1; i < len(input); i += 1 {
         current_elem := input[i]
@@ -177,3 +202,25 @@ insertion_sort :: proc(input: []int) {
         input[j + 1] = current_elem
     }
 }
+
+// -----------------------------------------------------------
+
+add_ints :: proc(a, b: int) -> int {
+    return a + b
+}
+
+add_floats :: proc(a, b: f32) -> f32 {
+    return a + b
+}
+
+add_strings :: proc(a, b: string) -> string {
+    return strings.concatenate([]string{a, b})
+}
+
+add :: proc {
+    add_ints,
+    add_floats,
+    add_strings,
+}
+
+// -----------------------------------------------------------
