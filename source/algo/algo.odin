@@ -1,10 +1,10 @@
-package main
+package algo
 
 import "core:strconv"
 import "core:strings"
 import "core:fmt"
 
-main :: proc() {
+algo_showcase :: proc() {
     fmt.println("\nHello Algo!")
     fmt.println("We do some algos in this file to learn stuff!\n")
     
