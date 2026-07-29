@@ -37,7 +37,7 @@ algo_showcase :: proc() {
     palindrome_input := "oko"
     fmt.println("\nWe're checking for palindrome:\n", palindrome_input, palindrome_check(palindrome_input))
 
-    array_to_sort := [14]int{5, 62, 1, 33, 12, 1, 23, 3, 4, 2131, 322, 2, 3, 5} 
+    array_to_sort := [14]int{5, 62, 1, 33, 12, 2, 23, 3, 4, 2131, 322, 2, 3, 5} 
     sort_input := array_to_sort
     fmt.println("\nWe're bubble sorting:\n", sort_input)
     bubble_sort(sort_input[:])
@@ -53,6 +53,10 @@ algo_showcase :: proc() {
     fmt.println("Add: ", overload_int_a, overload_int_b, add(overload_int_a, overload_int_b))
     fmt.println("Add: ", overload_float_a, overload_float_b, add(overload_float_a, overload_float_b))
     fmt.println("Add: ", overload_string_a, overload_string_b, add(overload_string_a, overload_string_b))
+
+    binary_found := 24
+    fmt.println("\nLet's found some value in sorted array:", sort_input)
+    fmt.printf(" Find me: %d, found index: %d\n", binary_found, binary_search(sort_input[:], binary_found))
 
     fmt.println("\n");
 }
@@ -221,6 +225,26 @@ add :: proc {
     add_ints,
     add_floats,
     add_strings,
+}
+
+// -----------------------------------------------------------
+
+binary_search :: proc(input_array: []int, target_value: int) -> int {
+    bottom_index := 0
+    top_index := len(input_array)
+    for bottom_index < top_index {
+        middle_index := bottom_index + (top_index - bottom_index) / 2 
+        
+        elem_value := input_array[middle_index]
+        if target_value == elem_value { return middle_index }
+
+        if target_value > elem_value {
+            bottom_index = middle_index + 1
+        } else {
+            top_index = middle_index
+        }
+    }
+    return -1
 }
 
 // -----------------------------------------------------------
