@@ -58,6 +58,9 @@ algo_showcase :: proc() {
     fmt.println("\nLet's found some value in sorted array:", sort_input)
     fmt.printf(" Find me: %d, found index: %d\n", binary_found, binary_search(sort_input[:], binary_found))
 
+    count_word_text := "the quick brown Fox jumps over the lazy dog the fox runs"
+    fmt.println("\nLet's count words in sentence:\n", count_word_text, world_frequency_counter(count_word_text))
+
     fmt.println("\n");
 }
 
@@ -118,7 +121,7 @@ array_reverse_alt :: proc(array: []int){
 
 count_characters :: proc(some_string: string) -> map[rune]int {
     return_count: map[rune]int
-    for character in some_string {
+    for character in strings.to_lower(some_string) {
         return_count[character] += 1
     }
     return return_count
@@ -245,6 +248,19 @@ binary_search :: proc(input_array: []int, target_value: int) -> int {
         }
     }
     return -1
+}
+
+// -----------------------------------------------------------
+
+world_frequency_counter :: proc(input: string) -> map[string]int {
+    return_count: map[string]int
+    split_input := strings.split(strings.to_lower(input), " ")
+
+    for word in split_input {
+        return_count[word] += 1
+    }
+
+    return return_count
 }
 
 // -----------------------------------------------------------
