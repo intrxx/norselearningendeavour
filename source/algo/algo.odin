@@ -1,3 +1,4 @@
+#+feature dynamic-literals
 package algo
 
 import "core:strconv"
@@ -60,6 +61,12 @@ algo_showcase :: proc() {
 
     count_word_text := "the quick brown Fox jumps over the lazy dog the fox runs"
     fmt.println("\nLet's count words in sentence:\n", count_word_text, world_frequency_counter(count_word_text))
+
+    array_to_stalin := [dynamic]int{4, 1, 342, 2, 12, 21, 2, 32, 2, 1231}
+    defer delete(array_to_stalin)
+    fmt.println("\nWe're stalin sorting:\n", array_to_stalin)
+    stalin_sort(&array_to_stalin)
+    fmt.printf(" Sorted: %d\n", array_to_stalin)
 
     fmt.println("\n");
 }
@@ -261,6 +268,19 @@ world_frequency_counter :: proc(input: string) -> map[string]int {
     }
 
     return return_count
+}
+
+// -----------------------------------------------------------
+
+stalin_sort :: proc(input: ^[dynamic]int) {
+    i := 1
+    for i < len(input) {
+        if input[i] < input[i - 1] {
+            ordered_remove(input, i)
+        } else {
+            i += 1
+        }
+    }
 }
 
 // -----------------------------------------------------------
