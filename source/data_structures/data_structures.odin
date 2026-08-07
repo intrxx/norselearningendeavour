@@ -100,6 +100,16 @@ queue_enqueue :: proc(q: ^Queue($T, $N), val: T) -> bool {
     q.tail = (q.tail + 1) % N
     q.count += 1
     return true
+}
+
+queue_enqueue_override :: proc(q: ^Queue($T, $N), val: T) {
+    q.items[q.tail] = val
+    q.tail = (q.tail + 1) % N
+    if q.count == N {
+        q.head = (q.head + 1) % N
+    } else {
+        q.count += 1
+    }
 } 
 
 queue_dequeue :: proc(q: ^Queue($T, $N)) -> (T, bool) {
@@ -133,6 +143,10 @@ queue_print :: proc(q: ^Queue($T, $N)) {
         fmt.printf(" %d;", item)
     }
     fmt.println()
+}
+
+queue_len :: proc(q: ^Queue($T, $N)) -> int {
+    return q.count
 }
 
 // -----------------------------------------------------------
